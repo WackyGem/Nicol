@@ -1,0 +1,55 @@
+Project nicolbase {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # Nicol Database
+  '''
+}
+
+Table users {
+  id bigint [primary key , increment , note: 'auto increment id']
+  created_at timestamptz [not null,default: `now()`, note: 'data created time']
+  modified_at timestamptz [not null,default: `now()`, note: 'data modified time']
+  username text [not null, note: 'username']
+  hashed_password text [not null]
+  nickname text [not null]
+  email text [not null]
+  email_verified bool [not null, default: false]
+  password_changed_at timestamptz [not null, default: '0001-01-01']
+
+  indexes {
+    username [name:'uk_users_username_idx' ,unique, note:'user username unique key']
+    email [name: 'uk_users_email_idx',unique, note:'user email unique key']
+  }
+}
+
+Table verify_emails{
+  id bigint [primary key , increment , note: 'auto increment id']
+  created_at timestamptz [not null,default: `now()`, note: 'data created time']
+  modified_at timestamptz [not null,default: `now()`, note: 'data modified time']
+  expired_at timestamptz [not null,default: `now() + interval '15 minutes'`, note: 'email expired time']
+  user_id bigint [not null ,ref: > users.id]
+  email text [not null]
+  secret_code text [not null,note: 'used to verify the mail']
+  used bool [not null, default: false , note: 'is active']
+
+  indexes {
+    (id,secret_code) [name: 'uk_verify_email_id_secret_code', unique, note:'verify email unique secret_code']
+    (email,used) [name: 'uk_verify_email_used_email', unique,  note:'verify email unique used']
+  }
+}
+
+Table sessions {
+  id uuid [primary key , note: 'session id']
+  created_at timestamptz [not null,default: `now()`, note: 'data created time']
+  expired_at timestamptz [not null]
+  username text [not null,ref: > users.username]
+  refresh_token text [not null, note: 'used to refresh access token']
+  user_agent text [not null, note: 'user client user-agent']
+  client_ip text [not null, note: 'user client x-forward-for']
+  blocked boolean [not null,default:false]
+}
+
+
+
+
+

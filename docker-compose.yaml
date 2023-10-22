@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nicolbase
+    ports:
+      - "5432:5432"
+    volumes:
+      - data-volume:/var/lib/postgresql/data
+    networks:
+      nicol-net:
+  redis:
+    image: redis:7-alpine
+    networks:
+      nicol-net:
+  backend:
+    privileged: true
+    image: nicol
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - model-volume:/app/model
+    ports:
+      - "9005:9005"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/nicolbase?sslmode=disable
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PROXY_ENABLE=true
+      - PROXY_HOST=192.168.63.21
+      - PROXY_PORT=7890
+    networks:
+      nicol-net:
+  web:
+    privileged: true
+    image: nicol-web
+    build:
+      context: ./nicol-web/
+      dockerfile: Dockerfile
+    ports:
+      - "8005:80"
+    networks:
+      nicol-net:
+volumes:
+  data-volume:
+  model-volume:
+networks:
+  nicol-net:

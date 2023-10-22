@@ -1,0 +1,78 @@
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.app-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  height: 70%; 
+}
+
+.app-heading {
+  font-size: 2rem;
+  color: #007bff;
+}
+
+.app-subheading {
+  font-size: 1.5rem;
+}
+
+.app-description {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.app-textarea {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.app-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+.app-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.app-result {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.result-heading {
+  font-size: 1.25rem;
+  color: #007bff;
+}
+
+.result-text {
+  font-size: 1.0rem;
+}

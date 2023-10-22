@@ -1,0 +1,77 @@
+server:
+  port: ${SERVER_PORT:9005}
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/nicolbase}
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:postgres}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD}
+      repositories:
+        enabled: false
+  thymeleaf:
+    prefix: classpath:/templates/
+  mail:
+    host:  ${MAIL_HOST:<your_smtp_host>}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:<your_username>}
+    password: ${MAIL_PASSWORD:<your_password>}
+    protocol: smtp
+    properties:
+      mail:
+        debug: false
+        smtp:
+          ssl:
+            enable: true
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  messages:
+    basename: lang/messages
+
+springdoc:
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+
+jimmer:
+  language: kotlin
+
+nicol:
+  http-proxy:
+    enabled: ${PROXY_ENABLE:false}
+    host: ${PROXY_HOST:127.0.0.1}
+    port: ${PROXY_PORT:7890}
+  security:
+    enabled: ${SECURITY_ENABLE:false}
+  mail:
+    sender: Nicol
+    topic: TOPIC:EMAIL
+    callbackUrl: http://${server.port}/v1/verify-email
+    subject: Welcome to Nicol
+  mq:
+    streams:
+      - topic: ${nicol.mail.topic}
+        groups:
+          - name: GROUP:NORMAL
+            callback: LOG
+            consumers: CONSUMER-1
+  verify:
+    access-token-duration: 15m
+    refresh-token-duration: 24h
+    token-symmetric-key: ${TOKEN_SYMMETRIC_KEY:12345678901234567890123456789012}
+    footer: 'Project Nicol'
+  inference:
+    driver-mode: CPU
+    model:
+      check-point: ${CHECK_POINT_PATH:model/stories15M.bin}
+    tokenizer:
+      path: ${TOKENIZER_PATH:model/tokenizer.bin}

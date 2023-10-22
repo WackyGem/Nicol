@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${subject}"></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #f0f0f2;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 14px
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to nicol</h1>
+    <p>Hi <span th:text="${username}"></span>, Thank you for registering with us！</p>
+    <p>Please <a th:href="${callbackUrl}">click here</a> to verify your email address.</p>
+    <br/>
+    <p class="footer"> This email was sent automatically by our system, please do not reply. </p>
+</div>
+</body>
+</html>
