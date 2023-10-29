@@ -4,7 +4,7 @@
 report.html
 report.json
 build
-model
+/model
 
 # Logs
 logs
