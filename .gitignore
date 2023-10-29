@@ -5,6 +5,7 @@ report.html
 report.json
 build
 /model
+application-dev.yaml
 
 # Logs
 logs
