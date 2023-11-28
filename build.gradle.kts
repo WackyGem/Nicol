@@ -26,10 +26,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.8.20"
-    id("org.springframework.boot") version "3.1.4"
-    id("io.spring.dependency-management") version "1.1.3"
-    id("com.google.devtools.ksp") version "1.8.22-1.0.11"
+    val kotlinVersion = "1.9.21"
+    id("org.springframework.boot") version "3.2.0"
+    id("io.spring.dependency-management") version "1.1.4"
+    id("com.google.devtools.ksp") version "1.9.21-1.0.15"
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
     id("org.jetbrains.kotlin.kapt") version kotlinVersion
@@ -38,16 +38,20 @@ plugins {
 
 group = "org.example"
 version = "0.1.0"
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 repositories {
-     maven { setUrl ("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/")}
+    mavenCentral()
+    maven { url = uri("https://repo.spring.io/milestone") }
+    maven { url = uri("https://repo.spring.io/snapshot") }
+    gradlePluginPortal()
 }
 
-val postgreSQLVersion = "42.6.0"
-val jimmerVersion = "0.8.22"
-val mapstructVersion = "1.5.5.Final"
+val postgreSQLVersion = "42.7.0"
+val jimmerVersion = "0.8.46"
+val mapstructVersion = "1.6.0.Beta1"
 val paseto4jVersion = "2023.1"
+val openApiDocVersion = "2.2.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -58,11 +62,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApiDocVersion")
     implementation("org.babyfish.jimmer:jimmer-spring-boot-starter:$jimmerVersion") {
         exclude(group = "org.springframework.boot", module = "spring-boot-autoconfigure")
         exclude(group = "org.springframework", module = "spring-expression")
-        exclude(group = "org.springdoc",module = "springdoc-openapi-ui")
+        exclude(group = "org.springdoc", module = "springdoc-openapi-ui")
         exclude(group = "org.yaml", module = "snakeyaml")
     }
 
@@ -85,12 +89,20 @@ dependencies {
     testImplementation("org.testcontainers:postgresql")
 }
 
+kotlin {
+    sourceSets.all {
+        languageSettings {
+            languageVersion = "2.0"
+        }
+    }
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += listOf(
             "-Xjsr305=strict"
         )
-        jvmTarget = "17"
+        jvmTarget = "21"
     }
 }
 
