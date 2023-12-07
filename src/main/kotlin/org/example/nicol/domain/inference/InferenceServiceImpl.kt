@@ -92,7 +92,7 @@ class InferenceServiceImpl(
     }
 
     override fun models(): ModelsResult = ModelsResult(
-        models = TransformerType.values().map {
+        models = TransformerType.entries.map {
             ModelsResult.ModelResult(
                 id = 0L,
                 name = it.name.lowercase(),

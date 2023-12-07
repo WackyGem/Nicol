@@ -52,6 +52,10 @@ nicol:
     port: ${PROXY_PORT:7890}
   security:
     enabled: ${SECURITY_ENABLE:false}
+    access-token-duration: 15m
+    refresh-token-duration: 24h
+    token-symmetric-key: ${TOKEN_SYMMETRIC_KEY:12345678901234567890123456789012}
+    footer: 'Project Nicol'
   mail:
     sender: Nicol
     topic: TOPIC:EMAIL
@@ -64,11 +68,6 @@ nicol:
           - name: GROUP:NORMAL
             callback: LOG
             consumers: CONSUMER-1
-  verify:
-    access-token-duration: 15m
-    refresh-token-duration: 24h
-    token-symmetric-key: ${TOKEN_SYMMETRIC_KEY:12345678901234567890123456789012}
-    footer: 'Project Nicol'
   inference:
     driver-mode: CPU
     model:

@@ -27,6 +27,7 @@ package org.example.nicol.domain.system
 
 import jakarta.servlet.http.HttpServletRequest
 import org.babyfish.jimmer.kt.new
+import org.bouncycastle.asn1.x500.style.RFC4519Style.name
 import org.example.nicol.application.UserService
 import org.example.nicol.application.config.NicolProperties
 import org.example.nicol.domain.system.exception.BadCredentialsException
@@ -93,18 +94,18 @@ class UserServiceImpl(
         val (accessToken, accessPayload) = tokenService.createToken(
             payloadMapper.toPayload(
                 loginUserCommand.username,
-                nicolProperties.verify.accessTokenDuration
+                nicolProperties.security.accessTokenDuration
             ),
-            nicolProperties.verify.tokenSymmetricKey,
-            nicolProperties.verify.footer
+            nicolProperties.security.tokenSymmetricKey,
+            nicolProperties.security.footer
         )
         val (refreshToken, refreshPayload) = tokenService.createToken(
             payloadMapper.toPayload(
                 loginUserCommand.username,
-                nicolProperties.verify.refreshTokenDuration
+                nicolProperties.security.refreshTokenDuration
             ),
-            nicolProperties.verify.tokenSymmetricKey,
-            nicolProperties.verify.footer
+            nicolProperties.security.tokenSymmetricKey,
+            nicolProperties.security.footer
         )
         val session = createSession(user.username, refreshToken, refreshPayload)
 
@@ -144,10 +145,10 @@ class UserServiceImpl(
         val (token, accessPayload) = tokenService.createToken(
             payloadMapper.toPayload(
                 payload.username,
-                nicolProperties.verify.accessTokenDuration
+                nicolProperties.security.accessTokenDuration
             ),
-            nicolProperties.verify.tokenSymmetricKey,
-            nicolProperties.verify.footer
+            nicolProperties.security.tokenSymmetricKey,
+            nicolProperties.security.footer
         )
         return RenewAccessTokenResult(token, accessPayload.expiredAt)
     }
@@ -220,14 +221,14 @@ class UserServiceImpl(
                     this.id = recordVerifyEmailCommand.userId
                 }
             })
-        return userMapper.toVerifyEmailResult(verifyEmail);
+        return userMapper.toVerifyEmailResult(verifyEmail)
     }
 
     override fun checkToken(checkTokenCommand: CheckAccessTokenCommand): Payload =
         tokenService.verifyToken(
             checkTokenCommand.refreshToken,
-            nicolProperties.verify.tokenSymmetricKey,
-            nicolProperties.verify.footer
+            nicolProperties.security.tokenSymmetricKey,
+            nicolProperties.security.footer
         )
 
     override fun getUserAuth(getUserAuthCommand: GetUserAuthCommand): UserAuth {

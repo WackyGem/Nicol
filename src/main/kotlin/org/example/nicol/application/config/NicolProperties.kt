@@ -31,7 +31,7 @@ import java.time.Duration
 
 @ConfigurationProperties("nicol")
 data class NicolProperties(
-    val verify: VerifierProperties,
+    val security: SecurityProperties,
     val inference: InferenceProperties,
     val mq: RedisMqProperties,
     val mail: MailProperties,
@@ -39,11 +39,13 @@ data class NicolProperties(
 ) {
 
     data class HttpProxyProperties(
+        val enabled:Boolean,
         val host:String,
         val port:Int
     )
 
-    data class VerifierProperties(
+    data class SecurityProperties(
+        val enabled: Boolean,
         val accessTokenDuration: Duration,
         val refreshTokenDuration: Duration,
         val tokenSymmetricKey: String,
