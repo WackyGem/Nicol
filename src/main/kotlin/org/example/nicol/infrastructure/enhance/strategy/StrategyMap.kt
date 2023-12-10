@@ -23,7 +23,7 @@
  *
  */
 
-package org.example.nicol.infrastructure.enhance
+package org.example.nicol.infrastructure.enhance.strategy
 
 @Target(AnnotationTarget.FIELD)
 annotation class StrategyMap

@@ -26,10 +26,9 @@
 package org.example.nicol.domain.inference.service
 
 import org.example.nicol.domain.inference.enums.TransformerType
-import org.example.nicol.infrastructure.enhance.StrategyKey
+import org.example.nicol.infrastructure.enhance.strategy.StrategyKey
 import org.example.nicol.infrastructure.entity.Sampler
 import org.example.nicol.infrastructure.entity.ModelWeight
-import org.example.nicol.infrastructure.entity.Vocabulary
 
 interface Transformer {
 

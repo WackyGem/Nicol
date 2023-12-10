@@ -26,7 +26,7 @@
 package org.example.nicol.domain.inference.service
 
 import org.example.nicol.domain.inference.enums.TokenizerType
-import org.example.nicol.infrastructure.enhance.StrategyKey
+import org.example.nicol.infrastructure.enhance.strategy.StrategyKey
 import org.example.nicol.infrastructure.entity.Vocabulary
 
 interface Tokenizer {

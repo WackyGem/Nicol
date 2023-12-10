@@ -28,7 +28,7 @@ package org.example.nicol.domain.inference.service
 import org.example.nicol.domain.inference.enums.MessageRole
 import org.example.nicol.domain.inference.enums.TransformerType
 import org.example.nicol.domain.inference.model.command.ChatCommand
-import org.example.nicol.infrastructure.enhance.StrategyKey
+import org.example.nicol.infrastructure.enhance.strategy.StrategyKey
 import org.springframework.stereotype.Component
 
 interface PromptAdapter {

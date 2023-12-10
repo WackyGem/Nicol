@@ -23,7 +23,7 @@
  *
  */
 
-package org.example.nicol.infrastructure.enhance
+package org.example.nicol.infrastructure.enhance.strategy
 
 import java.lang.annotation.Inherited
 

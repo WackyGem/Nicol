@@ -1,6 +1,8 @@
 package org.example.nicol.infrastructure.enhance
 
 import jakarta.annotation.Resource
+import org.example.nicol.infrastructure.enhance.strategy.StrategyKey
+import org.example.nicol.infrastructure.enhance.strategy.StrategyMap
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.Test

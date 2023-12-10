@@ -40,7 +40,7 @@ import org.example.nicol.domain.inference.service.Downloader
 import org.example.nicol.domain.inference.service.PromptAdapter
 import org.example.nicol.domain.inference.service.Tokenizer
 import org.example.nicol.domain.inference.service.Transformer
-import org.example.nicol.infrastructure.enhance.StrategyMap
+import org.example.nicol.infrastructure.enhance.strategy.StrategyMap
 import org.example.nicol.infrastructure.entity.ModelWeight
 import org.example.nicol.infrastructure.entity.Vocabulary
 import org.slf4j.LoggerFactory

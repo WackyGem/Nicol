@@ -46,6 +46,8 @@ jimmer:
   language: kotlin
 
 nicol:
+  rate-limit:
+
   http-proxy:
     enabled: ${PROXY_ENABLE:false}
     host: ${PROXY_HOST:127.0.0.1}

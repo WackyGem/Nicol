@@ -26,17 +26,12 @@
 package org.example.nicol.interfaces.config.version
 
 import org.springframework.core.annotation.AnnotationUtils
-import org.springframework.web.servlet.mvc.condition.PathPatternsRequestCondition
-import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition
 import org.springframework.web.servlet.mvc.condition.RequestCondition
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
-import org.springframework.web.util.pattern.PathPatternParser
 import java.lang.reflect.Method
 
 class ApiVersionHandlerMapping : RequestMappingHandlerMapping() {
-
-
 
     override fun getCustomMethodCondition(method: Method): RequestCondition<*>? {
         return createCondition(method.declaringClass)
