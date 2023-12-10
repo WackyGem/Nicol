@@ -47,13 +47,13 @@ repositories {
     gradlePluginPortal()
 }
 
-val postgreSQLVersion = "42.7.0"
-val jimmerVersion = "0.8.46"
-val mapstructVersion = "1.6.0.Beta1"
-val paseto4jVersion = "2023.1"
-val openApiDocVersion = "2.2.0"
-
 dependencies {
+    val postgresqlVersion = "42.7.0"
+    val jimmerVersion = "0.8.46"
+    val mapstructVersion = "1.6.0.Beta1"
+    val paseto4jVersion = "2023.1"
+    val openApiDocVersion = "2.2.0"
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-aop")
@@ -79,7 +79,7 @@ dependencies {
     kapt("org.mapstruct:mapstruct-processor:$mapstructVersion")
     kapt("org.babyfish.jimmer:jimmer-mapstruct-apt:$jimmerVersion")
 
-    runtimeOnly("org.postgresql:postgresql:$postgreSQLVersion")
+    runtimeOnly("org.postgresql:postgresql:$postgresqlVersion")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
